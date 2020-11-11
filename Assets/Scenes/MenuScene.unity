@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 224417849}
   - component: {fileID: 224417848}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Stage1Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 657205922}
   - component: {fileID: 657205921}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Stage4Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,6 +1159,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150523694}
   m_CullTransparentMesh: 0
+--- !u!1 &1248919837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1248919839}
+  - component: {fileID: 1248919838}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1248919838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248919837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4c72099a51c4ac19b298af264acfbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageHolder: {fileID: 529577364}
+--- !u!4 &1248919839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248919837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 149.5291, y: 276.92697, z: -57.45806}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1250904929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1295,7 @@ GameObject:
   - component: {fileID: 1282646118}
   - component: {fileID: 1282646117}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: Stage5Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1447,7 +1491,7 @@ GameObject:
   - component: {fileID: 1709544539}
   - component: {fileID: 1709544538}
   m_Layer: 5
-  m_Name: Button (5)
+  m_Name: Stage6Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1567,7 +1611,7 @@ GameObject:
   - component: {fileID: 1724137993}
   - component: {fileID: 1724137992}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Stage3Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1755,7 +1799,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1815192812}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1248919838}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: BackHome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1815192812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1886,7 +1942,7 @@ GameObject:
   - component: {fileID: 2045814771}
   - component: {fileID: 2045814770}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Stage2Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

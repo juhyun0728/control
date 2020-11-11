@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LogoScene.unity
     guid: 5db43b75e80abe64faf12f8f2c3c11cd
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: 5ebde6427a72bd543873fb3c3928fa0d
   - enabled: 0
     path: Assets/Scenes/J_GameScene.unity
     guid: 5c2a078017f6abf4a94e312ca3400b4a
+  - enabled: 1
+    path: Assets/Scenes/GameScene 2.unity
+    guid: ad5526a5c283141558e7cd7db9f556c0
   m_configObjects: {}
