@@ -33,7 +33,9 @@ public class ODragScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)//드래그 끝났을 때 
     { 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
-        this.transform.position = defaultposition; 
+        this.transform.position = defaultposition;
+        
+
     }
 
     public void OnBeginDrag(PointerEventData eventData)
