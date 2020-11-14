@@ -7,26 +7,11 @@ using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
-	public Transform StageHolder;
-	Button[] stages;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        stages = StageHolder.GetComponentsInChildren<Button>();
-    }
-
-    void Update() {
-    	for (int i=0; i<stages.Length; i++) {
-    		stages[i].onClick.AddListener(()=>startStage());
-    	}
-    }
-
     public void BackHome() {
     	SceneManager.LoadScene("LogoScene");
     }
 
-    void startStage() {
+    public void startStage() {
     	switch (EventSystem.current.currentSelectedGameObject.name) {
     		case "Stage1Button" :
     			SceneManager.LoadScene("GameScene 1");
