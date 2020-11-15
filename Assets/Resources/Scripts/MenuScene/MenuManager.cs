@@ -7,32 +7,62 @@ using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
+    public static MenuManager instance;
+
+    [System.Serializable]
+    public class Stages
+    {
+
+        public string StageText;
+        public int Unlock;
+        public bool isInteractible;
+        public Button.ButtonClickedEvent OnClick;
+    }
+    public GameObject StageButton;
+    public Transform Spacer;
+    public List<Stages> StageList;
+
+    // Use this for initialization
+    void Start()
+    {
+        instance = this;
+        //DeleteData();
+        FillList();
+    }
+    void FillList()
+    {
+        foreach (var stage in StageList)
+        {
+            Debug.Log(stage);
+            GameObject newbutton = Instantiate(StageButton) as GameObject;
+            StagebtnManager button = newbutton.GetComponent<StagebtnManager>();
+
+            button.StageText.text = stage.StageText;
+
+            if (PlayerPrefs.GetInt("Stage" + button.StageText.text) == 1)
+            {
+                stage.Unlock = 1;
+                stage.isInteractible = true;
+            }
+
+            button.unlocked = stage.Unlock;
+            button.GetComponent<Button>().interactable = stage.isInteractible;
+            button.GetComponent<Button>().onClick.AddListener(() => startStage("GameScene " + button.StageText.text));
+
+            newbutton.transform.SetParent(Spacer);
+        }
+        //SAVE();
+    }
+
     public void BackHome() {
     	SceneManager.LoadScene("LogoScene");
     }
+    public void DeleteData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 
-    public void startStage() {
-    	switch (EventSystem.current.currentSelectedGameObject.name) {
-    		case "Stage1Button" :
-    			SceneManager.LoadScene("GameScene 1");
-    			break;
-    		case "Stage2Button" :
-    			SceneManager.LoadScene("GameScene 2");
-    			break;
-    		case "Stage3Button" :
-    			SceneManager.LoadScene("GameScene 3");
-    			break;
-    		case "Stage4Button" :
-    			SceneManager.LoadScene("GameScene 4");
-    			break;
-    		case "Stage5Button" :
-    			SceneManager.LoadScene("GameScene 5");
-    			break;
-    		case "Stage6Button" :
-    			SceneManager.LoadScene("GameScene 6");
-    			break;
-    		default :
-    			break;
-    	}
+    public void startStage(string value) {
+        SceneManager.LoadScene(value);
     }
 }
