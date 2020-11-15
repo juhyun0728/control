@@ -26,14 +26,13 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        //DeleteData();
+        DeleteData();
         FillList();
     }
     void FillList()
     {
         foreach (var stage in StageList)
         {
-            Debug.Log(stage);
             GameObject newbutton = Instantiate(StageButton) as GameObject;
             StagebtnManager button = newbutton.GetComponent<StagebtnManager>();
 

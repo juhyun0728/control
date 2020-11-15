@@ -3,23 +3,36 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class GameUIManager : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
+    public static StageManager instance;
     public GameObject popUp_clear, popUp_Notice;
-    MenuManager menuMng;
     int stageAmount, currentStage, nextStage;
-    public bool isClear = false;
+    public bool isClear;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     private void Start()
     {
-        menuMng = MenuManager.instance;
-        stageAmount = menuMng.StageList.Count ;
-        GameClear();
+        stageAmount = 4 ;
+        Time.timeScale = 1;
+        isClear = false;
+    }
+
+    private void Update()
+    {
+        if (isClear == true)
+        {
+            GameClear();
+        }
     }
 
     void GameClear()
     {
+        Time.timeScale = 0;
         for (int i = 1; i <= stageAmount; i++)
         {
             if (SceneManager.GetActiveScene().name == "GameScene " + i)

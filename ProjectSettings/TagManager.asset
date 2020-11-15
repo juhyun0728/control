@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Goal
+    uniqueID: 2793701067
+    locked: 0
+  - name: Object
+    uniqueID: 2594477907
+    locked: 0
+  - name: Component_BG
+    uniqueID: 1220821629
+    locked: 0
+  - name: Component
+    uniqueID: 2671291389
+    locked: 0
