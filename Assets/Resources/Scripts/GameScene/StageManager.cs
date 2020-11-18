@@ -81,5 +81,8 @@ public class StageManager : MonoBehaviour
         SceneManager.LoadScene("MenuScene");
     }
 
-
+    public void btn_Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
