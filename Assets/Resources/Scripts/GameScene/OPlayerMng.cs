@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 public class OPlayerMng : MonoBehaviour, IDropHandler
 {
     float fSpeed = 5;
+
+    public ODragScript d;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,18 +45,27 @@ public class OPlayerMng : MonoBehaviour, IDropHandler
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Ground"))
-        {
-            Debug.Log("FF");
-        }
-        Debug.Log("FASDASD");
+
     }
 
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("FF");
+        
+
+        if (this.transform.childCount == 0)
+        {
+            eventData.pointerDrag.transform.SetParent(this.transform);
+        }
+        else
+        {
+            d = eventData.pointerDrag.gameObject.GetComponent<ODragScript>();
+            d.returnToParent();
+        }
+
+        Debug.Log("OnDrop on player");
     }
     
 }

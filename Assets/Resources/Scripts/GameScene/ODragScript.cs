@@ -50,7 +50,7 @@ public class ODragScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        //this.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)//드래그시작할 때
@@ -60,10 +60,10 @@ public class ODragScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     void IDragHandler.OnDrag(PointerEventData eventData)//드래그중일 때 
     {
-        //Vector2 currentPos = Input.mousePosition; 
-        //this.transform.position = currentPos; 
+        Vector2 currentPos = Input.mousePosition;
+        this.transform.position = currentPos;
 
-        //this.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        this.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
 
         //결과값 ( this.parentRectTransform 의 로컬로 나온다 )
@@ -79,8 +79,15 @@ public class ODragScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         }
     }
 
+    public void returnToParent()
+    {
+        //원래 붙어있던 부모로 돌아가삼
+        this.transform.SetParent(this.parentRectTrans);
+    }
+
+
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)//드래그 끝났을 때 
-    { 
+    {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         this.transform.position = defaultposition;
     }
@@ -89,7 +96,6 @@ public class ODragScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     {
         throw new System.NotImplementedException();
 
-      
     }
 
     public void OnDrag(PointerEventData eventData)
