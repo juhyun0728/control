@@ -9,6 +9,7 @@ public class StageManager : MonoBehaviour
     public GameObject popUp_clear, popUp_Notice;
     int stageAmount, currentStage, nextStage;
     public bool isClear;
+    private GameObject player;
 
     private void Awake()
     {
@@ -17,16 +18,19 @@ public class StageManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        stageAmount = 4 ;
+        stageAmount = 5 ;
         Time.timeScale = 1;
         isClear = false;
+        player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     private void Update()
     {
         if (isClear == true)
         {
-            GameClear();
+            player.gameObject.GetComponent<Animator>().SetBool("isClear", true);
+            Invoke("GameClear",1);
         }
     }
 
