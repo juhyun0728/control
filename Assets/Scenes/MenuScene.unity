@@ -636,11 +636,17 @@ MonoBehaviour:
         m_Calls: []
   - StageText: 3
     Unlock: 1
-    isInteractible: 1
+    isInteractible: 0
     OnClick:
       m_PersistentCalls:
         m_Calls: []
   - StageText: 4
+    Unlock: 0
+    isInteractible: 0
+    OnClick:
+      m_PersistentCalls:
+        m_Calls: []
+  - StageText: 5
     Unlock: 0
     isInteractible: 0
     OnClick:
