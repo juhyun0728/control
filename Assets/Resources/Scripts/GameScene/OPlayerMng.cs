@@ -76,11 +76,8 @@ public class OPlayerMng : MonoBehaviour, IDropHandler
 
     void SlideObject()
     {
-        
-
         if(bDir)
         {
-            Debug.Log("QWEQWEQWE");
             transform.Translate(Vector3.right * fSpeed * Time.smoothDeltaTime, Space.World);
         }
         else

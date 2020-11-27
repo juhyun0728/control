@@ -29,6 +29,7 @@ public class ODragTest : MonoBehaviour
     {
         //print("Drag!!");
         //Debug.Log("AA");
+        //this.GetComponent<BoxCollider2D>().enabled = false;
         Vector3 mousePosition = new Vector3(Input.mousePosition.x,Input.mousePosition.y, distance);
         Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         transform.position = objPosition;
@@ -54,32 +55,11 @@ public class ODragTest : MonoBehaviour
 
     private void OnMouseUp()
     {
+        this.GetComponent<BoxCollider2D>().enabled = true;
         if(bStay)
         {
-            this.transform.position = ComponentRootPosition;
-            currentPlayerMng.componentVectorList.Add(new Vector2(0, currentPlayerMng.componentVectorList[currentPlayerMng.componentVectorList.Count - 1].y + componentStackValue));
-            this.transform.SetParent(componentRootTransform);
-            this.enabled = false;
-            this.GetComponent<BoxCollider2D>().enabled = false;
-
-            currentPlayerMng.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-            currentPlayerMng.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-
-            switch (this.name)
-            {
-                case "Move(Clone)":
-                    currentPlayerMng.bMoveState = true;
-                    break;
-                case "Jump(Clone)":
-                    currentPlayerMng.bJumpState = true;
-                    break;
-                case "Slide(Clone)":
-                    currentPlayerMng.bSlideState = true;
-                    break;
-                case "Destroy(Clone)":
-                    currentPlayerMng.bDestroyState = true;
-                    break;
-            }
+            
+            AttachComponent();
         }
         else
         {
@@ -87,17 +67,49 @@ public class ODragTest : MonoBehaviour
         }
     }
 
+    void AttachComponent()
+    {
+        this.transform.position = ComponentRootPosition;
+        currentPlayerMng.componentVectorList.Add(new Vector2(0, currentPlayerMng.componentVectorList[currentPlayerMng.componentVectorList.Count - 1].y + componentStackValue));
+        this.transform.SetParent(componentRootTransform);
+        this.enabled = false;
+        this.GetComponent<BoxCollider2D>().enabled = false;
+
+        currentPlayerMng.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        currentPlayerMng.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        switch (this.name)
+        {
+            case "Move(Clone)":
+                currentPlayerMng.bMoveState = true;
+                break;
+            case "Jump(Clone)":
+                currentPlayerMng.bJumpState = true;
+                break;
+            case "Slide(Clone)":
+                currentPlayerMng.bSlideState = true;
+                break;
+            case "Destroy(Clone)":
+                currentPlayerMng.bDestroyState = true;
+                break;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //ComponentRootPosition = collision.transform.GetChild(0).transform.position;
         //ComponentRootPosition = new Vector2(collision.transform.position.x, collision.transform.position.y + 0.86f);
-        currentPlayerMng = collision.GetComponent<OPlayerMng>();
-        ComponentRootPosition = new Vector2(collision.transform.position.x, collision.transform.position.y + currentPlayerMng.componentVectorList[currentPlayerMng.componentVectorList.Count-1].y + 0.86f);
-
-        componentRootTransform = collision.transform.GetChild(0).transform;
-        bStay = true;
-
-        Debug.Log("TEST");
+        if(collision.tag != "Finish")
+        {
+            currentPlayerMng = collision.GetComponent<OPlayerMng>();
+            Debug.Log(currentPlayerMng.componentVectorList.Count);
+            if (currentPlayerMng.componentVectorList != null)
+            {
+                ComponentRootPosition = new Vector2(collision.transform.position.x, collision.transform.position.y + currentPlayerMng.componentVectorList[currentPlayerMng.componentVectorList.Count - 1].y + 0.86f);
+            }
+            componentRootTransform = collision.transform.GetChild(0).transform;
+            bStay = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
