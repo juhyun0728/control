@@ -25,6 +25,7 @@ public class ODragTest : MonoBehaviour
     void Update()
     {
     }
+
     void OnMouseDrag()
     {
         //print("Drag!!");
