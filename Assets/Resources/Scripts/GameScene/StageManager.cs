@@ -6,9 +6,8 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     public static StageManager instance;
-    protected int stageAmount, currentStage, nextStage;
-    [HideInInspector] public bool isClear;
-    private GameObject player;
+    [HideInInspector] public int stageAmount, currentStage, nextStage;
+    public bool isClear;
 
     private void Awake()
     {
@@ -20,7 +19,6 @@ public class StageManager : MonoBehaviour
         stageAmount = 5 ;
         Time.timeScale = 1;
         isClear = false;
-        player = GameObject.FindGameObjectWithTag("Player");
 
     }
 
@@ -28,7 +26,6 @@ public class StageManager : MonoBehaviour
     {
         if (isClear == true)
         {
-            player.gameObject.GetComponent<Animator>().SetBool("isClear", true);
             Invoke("GameClear",1);
         }
     }
@@ -36,13 +33,14 @@ public class StageManager : MonoBehaviour
     void GameClear()
     {
         Time.timeScale = 0;
+        SoundManager.instance.play_clear();
         for (int i = 1; i <= stageAmount; i++)
         {
             if (SceneManager.GetActiveScene().name == "GameScene " + i)
             {
                 currentStage = i;
                 nextStage = currentStage + 1;
-
+                
                 if (nextStage <= stageAmount)
                 {
                     PlayerPrefs.SetInt("Stage" + nextStage.ToString(), 1);

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : StageManager
+public class UIManager : MonoBehaviour
 {
-    public static new UIManager instance;
+    public static UIManager instance;
     public GameObject popUp_clear, popUp_Notice, popUp_Menu, btn_Menu;
 
     private void Start()
@@ -28,6 +28,7 @@ public class UIManager : StageManager
         popUp_Menu.SetActive(false);
         btn_Menu.SetActive(true);
         Time.timeScale = 1;
+        SoundManager.instance.play_menu_close();
     }
 
     public void open_Menu()
@@ -35,12 +36,13 @@ public class UIManager : StageManager
         btn_Menu.SetActive(false);
         popUp_Menu.SetActive(true);
         Time.timeScale = 0;
+        SoundManager.instance.play_menu_open();
     }
     public void btn_Next()
     {
-        if (nextStage <= stageAmount)
+        if (StageManager.instance.nextStage <= StageManager.instance.stageAmount)
         {
-            SceneManager.LoadScene(string.Format("GameScene {0}", nextStage));
+            SceneManager.LoadScene(string.Format("GameScene {0}", StageManager.instance.nextStage));
         }
         else
         {

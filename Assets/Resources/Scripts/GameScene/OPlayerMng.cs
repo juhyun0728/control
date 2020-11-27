@@ -50,6 +50,11 @@ public class OPlayerMng : MonoBehaviour, IDropHandler
         {
             DestroyObject();
         }
+
+        if (StageManager.instance.isClear == true && gameObject.tag == "Player")
+        {
+           anim.SetBool("isClear", true);
+        }
     }
 
     void moveObject()
@@ -62,6 +67,7 @@ public class OPlayerMng : MonoBehaviour, IDropHandler
             if (keyHorizontal != 0)
             {
                 anim.SetBool("isMove", true);
+                SoundManager.instance.play_walk();
                 anim.SetFloat("Dir", keyHorizontal);
 
             }
