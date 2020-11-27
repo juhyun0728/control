@@ -7,12 +7,13 @@ public class OPlayerMng : MonoBehaviour, IDropHandler
 {
     float fSpeed = 5;
 
+    public List<Vector2> componentVectorList;
     public ODragScript d;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        componentVectorList.Add(new Vector2(0, 0));
     }
 
     // Update is called once per frame
