@@ -13,7 +13,7 @@ public class Switch : MonoBehaviour
     }
 
     void OnTriggerExit2D (Collider2D other) {
-    	door.SetActive(true);
-    	this.transform.localScale = new Vector3(3,3,3);
+    	//door.SetActive(true);
+    	//this.transform.localScale = new Vector3(3,3,3);
     }
 }
