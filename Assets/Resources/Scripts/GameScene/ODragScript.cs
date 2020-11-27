@@ -90,6 +90,7 @@ public class ODragScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         this.transform.position = defaultposition;
+        SoundManager.instance.play_stick();
     }
 
     public void OnBeginDrag(PointerEventData eventData)

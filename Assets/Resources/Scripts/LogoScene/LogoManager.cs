@@ -12,9 +12,14 @@ public class LogoManager : MonoBehaviour
         
     }
    	public void StartGame() {
-    	SceneManager.LoadScene(MenuScene);
+        SoundManager.instance.play_gameStart();
+        Invoke("loadMenu", 0.2f);      
     }
-
+    
+    void loadMenu()
+    {
+    SceneManager.LoadScene(MenuScene);
+    }
     public void ExitGame() {
 		#if UNITY_EDITOR
         	UnityEditor.EditorApplication.isPlaying = false;
