@@ -388,7 +388,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116482924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -3.7, z: 0}
+  m_LocalPosition: {x: 6, y: -3.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1394697182}
@@ -790,7 +790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328291940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -3.7, z: 0}
+  m_LocalPosition: {x: -6, y: -3.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1394697182}
@@ -865,7 +865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336936094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.97, z: 1}
+  m_LocalPosition: {x: 0, y: -3.97, z: 0}
   m_LocalScale: {x: 0.43037498, y: 0.05875, z: 42.5253}
   m_Children: []
   m_Father: {fileID: 1974249810}
@@ -1107,7 +1107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554148237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -3.7, z: 0}
+  m_LocalPosition: {x: -3, y: -3.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1394697182}
@@ -1137,7 +1137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603962447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -3.7, z: 0}
+  m_LocalPosition: {x: 3, y: -3.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1394697182}
@@ -5272,8 +5272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temp:
   - {fileID: 8984699171228843981, guid: eaf9905af336eb14dbd1a7c0e91e8aa6, type: 3}
-  - {fileID: 8984699171228843981, guid: 37d9943a3700b8f4fb1dac703eefb451, type: 3}
   - {fileID: 9135200292628963306, guid: 6f691b375cbfab4409a90bea08f0fc4f, type: 3}
+  - {fileID: 0}
   - {fileID: 2983619263629906249, guid: 48b1f1088ec2656468e2f04ed481011f, type: 3}
   - {fileID: 8984699171228843981, guid: ed57e3bb43e86e34aad7ea019bfb7807, type: 3}
   ComponentRoot:
@@ -6387,7 +6387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1974249810}
   m_Layer: 0
-  m_Name: Bottom_Center (1)
+  m_Name: Bottom_Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
