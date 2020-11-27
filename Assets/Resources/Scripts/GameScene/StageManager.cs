@@ -6,9 +6,8 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     public static StageManager instance;
-    public GameObject popUp_clear, popUp_Notice;
-    int stageAmount, currentStage, nextStage;
-    public bool isClear;
+    protected int stageAmount, currentStage, nextStage;
+    [HideInInspector] public bool isClear;
     private GameObject player;
 
     private void Awake()
@@ -47,11 +46,11 @@ public class StageManager : MonoBehaviour
                 if (nextStage <= stageAmount)
                 {
                     PlayerPrefs.SetInt("Stage" + nextStage.ToString(), 1);
-                    popUp_clear.SetActive(true);
+                    UIManager.instance.popUp_clear.SetActive(true);
                 }
                 else
                 {
-                    popUp_Notice.SetActive(true);
+                    UIManager.instance.popUp_Notice.SetActive(true);
                 }
             }
         }
@@ -65,28 +64,5 @@ public class StageManager : MonoBehaviour
             SceneManager.LoadScene(string.Format("GameScene {0}", nextStage));
         }
 
-    }
-
- 
-    public void btn_Next()
-    {
-        if (nextStage <= stageAmount)
-        {
-            SceneManager.LoadScene(string.Format("GameScene {0}", nextStage));
-        }
-        else
-        {
-            popUp_Notice.SetActive(true);
-        }
-    }
-
-    public void btn_Back()
-    {
-        SceneManager.LoadScene("MenuScene");
-    }
-
-    public void btn_Retry()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
