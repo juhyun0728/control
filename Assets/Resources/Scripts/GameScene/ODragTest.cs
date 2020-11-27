@@ -94,7 +94,6 @@ public class ODragTest : MonoBehaviour
                 currentPlayerMng.bDestroyState = true;
                 break;
         }
-        SoundManager.instance.play_stick();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

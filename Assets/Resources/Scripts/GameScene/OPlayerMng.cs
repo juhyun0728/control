@@ -12,7 +12,6 @@ public class OPlayerMng : MonoBehaviour, IDropHandler
     float fJumpPower = 5f;
     bool bJumping;
     bool bDir = false;
-    Animator anim;
 
     public bool bMoveState = false;
     public bool bJumpState = false;
@@ -25,7 +24,6 @@ public class OPlayerMng : MonoBehaviour, IDropHandler
         //Debug.Log(gameObject.transform.GetChild(0).FindChild("Move"));
         componentVectorList.Add(new Vector2(0, 0));
         bJumping = false;
-        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,32 +48,12 @@ public class OPlayerMng : MonoBehaviour, IDropHandler
         {
             DestroyObject();
         }
-
-        if (StageManager.instance.isClear == true && gameObject.tag == "Player")
-        {
-           anim.SetBool("isClear", true);
-        }
     }
 
     void moveObject()
     {
         float keyHorizontal = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * fSpeed * Time.smoothDeltaTime * keyHorizontal, Space.World);
-
-        if (gameObject.tag == "Player")
-        {
-            if (keyHorizontal != 0)
-            {
-                anim.SetBool("isMove", true);
-                SoundManager.instance.play_walk();
-                anim.SetFloat("Dir", keyHorizontal);
-
-            }
-            else
-            {
-                anim.SetBool("isMove", false);
-            }
-        }
     }
 
     void jumpObject()

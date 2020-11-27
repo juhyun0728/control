@@ -6,8 +6,10 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     public static StageManager instance;
-    [HideInInspector] public int stageAmount, currentStage, nextStage;
+    public GameObject popUp_clear, popUp_Notice;
+    int stageAmount, currentStage, nextStage;
     public bool isClear;
+    private GameObject player;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class StageManager : MonoBehaviour
         stageAmount = 5 ;
         Time.timeScale = 1;
         isClear = false;
+        player = GameObject.FindGameObjectWithTag("Player");
 
     }
 
@@ -26,6 +29,7 @@ public class StageManager : MonoBehaviour
     {
         if (isClear == true)
         {
+            player.gameObject.GetComponent<Animator>().SetBool("isClear", true);
             Invoke("GameClear",1);
         }
     }
@@ -33,22 +37,21 @@ public class StageManager : MonoBehaviour
     void GameClear()
     {
         Time.timeScale = 0;
-        SoundManager.instance.play_clear();
         for (int i = 1; i <= stageAmount; i++)
         {
             if (SceneManager.GetActiveScene().name == "GameScene " + i)
             {
                 currentStage = i;
                 nextStage = currentStage + 1;
-                
+
                 if (nextStage <= stageAmount)
                 {
                     PlayerPrefs.SetInt("Stage" + nextStage.ToString(), 1);
-                    UIManager.instance.popUp_clear.SetActive(true);
+                    popUp_clear.SetActive(true);
                 }
                 else
                 {
-                    UIManager.instance.popUp_Notice.SetActive(true);
+                    popUp_Notice.SetActive(true);
                 }
             }
         }
@@ -62,5 +65,28 @@ public class StageManager : MonoBehaviour
             SceneManager.LoadScene(string.Format("GameScene {0}", nextStage));
         }
 
+    }
+
+ 
+    public void btn_Next()
+    {
+        if (nextStage <= stageAmount)
+        {
+            SceneManager.LoadScene(string.Format("GameScene {0}", nextStage));
+        }
+        else
+        {
+            popUp_Notice.SetActive(true);
+        }
+    }
+
+    public void btn_Back()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void btn_Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
