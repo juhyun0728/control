@@ -17,7 +17,6 @@ public class ODragTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         defaultposition = this.transform.position;
         //ComponentRootPosition = this.transform.GetChild(0).transform.localPosition;
     }
@@ -25,23 +24,11 @@ public class ODragTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.rigidbody != null)
-                hit.rigidbody.gameObject.SendMessage("OnMouseDown");
-            else
-                hit.collider.SendMessage("OnMouseDown");
-
-            Debug.Log("AASDASD");
-        }
-        //Debug.Log("F");
     }
     void OnMouseDrag()
     {
         //print("Drag!!");
-        Debug.Log("AA");
+        //Debug.Log("AA");
         Vector3 mousePosition = new Vector3(Input.mousePosition.x,Input.mousePosition.y, distance);
         Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         transform.position = objPosition;
@@ -49,7 +36,7 @@ public class ODragTest : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("click");
+        //Debug.Log("click");
     }
 
     void UnityApiMouseEvents()
@@ -63,7 +50,6 @@ public class ODragTest : MonoBehaviour
             else
                 hit.collider.SendMessage("OnMouseDown");
         }
-
     }
 
     private void OnMouseUp()
@@ -72,7 +58,28 @@ public class ODragTest : MonoBehaviour
         {
             this.transform.position = ComponentRootPosition;
             currentPlayerMng.componentVectorList.Add(new Vector2(0, currentPlayerMng.componentVectorList[currentPlayerMng.componentVectorList.Count - 1].y + componentStackValue));
-            //this.transform.SetParent(componentRootTransform);
+            this.transform.SetParent(componentRootTransform);
+            this.enabled = false;
+            this.GetComponent<BoxCollider2D>().enabled = false;
+
+            currentPlayerMng.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            currentPlayerMng.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            switch (this.name)
+            {
+                case "Move(Clone)":
+                    currentPlayerMng.bMoveState = true;
+                    break;
+                case "Jump(Clone)":
+                    currentPlayerMng.bJumpState = true;
+                    break;
+                case "Slide(Clone)":
+                    currentPlayerMng.bSlideState = true;
+                    break;
+                case "Destroy(Clone)":
+                    currentPlayerMng.bDestroyState = true;
+                    break;
+            }
         }
         else
         {
@@ -86,10 +93,11 @@ public class ODragTest : MonoBehaviour
         //ComponentRootPosition = new Vector2(collision.transform.position.x, collision.transform.position.y + 0.86f);
         currentPlayerMng = collision.GetComponent<OPlayerMng>();
         ComponentRootPosition = new Vector2(collision.transform.position.x, collision.transform.position.y + currentPlayerMng.componentVectorList[currentPlayerMng.componentVectorList.Count-1].y + 0.86f);
-        
-        //Debug.Log(collision.transform.GetChild(0).transform.name);
-        //componentRootTransform = collision.transform.GetChild(0).transform;
+
+        componentRootTransform = collision.transform.GetChild(0).transform;
         bStay = true;
+
+        Debug.Log("TEST");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
