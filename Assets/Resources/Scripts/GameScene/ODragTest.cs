@@ -96,7 +96,7 @@ public class ODragTest : MonoBehaviour
         }
         SoundManager.instance.play_stick();
     }
-
+     
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //ComponentRootPosition = collision.transform.GetChild(0).transform.position;
